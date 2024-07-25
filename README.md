@@ -1,3 +1,58 @@
+# CJZ
+- step1 Git colne
+```bash
+git clone https://github.com/ItzCrazyKns/Perplexica.git
+```
+
+- step2 Copy config.toml
+```
+cd Perplexica
+mkdir -p ./backend-dbstore
+cp sample.config.toml config.toml
+```
+
+- step3 Edit nginx/default.conf
+```
+server_name  perplexica.biobank.org.tw;
+proxy_pass http://192.168.211.11:3000;
+server_name api_perplexica.biobank.org.tw;
+proxy_pass http://192.168.211.11:3001;
+server_name searxng_perplexica.biobank.org.tw;
+proxy_pass http://192.168.211.11:4000;
+```
+
+- step4 Edit docker-compose.yaml
+```
+- NEXT_PUBLIC_API_URL=https://api_perplexica.biobank.org.tw/api
+- NEXT_PUBLIC_WS_URL=wss://api_perplexica.biobank.org.tw
+```
+
+- step5 Start server
+```
+docker compose up -d --build
+```
+
+- step6 Check config.toml in container
+```
+docker exec nchc_perplexica-backend cat /home/perplexica/config.toml
+```
+
+- step5 Open website
+https://perplexica.biobank.org.tw/
+
+- step6 set config
+```
+1. add Groq api key
+2. ask 目前台灣總統是
+```
+- step 7 Open website
+https://searxng_perplexica.biobank.org.tw/
+
+- step 8 cleanr docker cache
+```
+docker builder prune -a
+```
+
 # 🚀 Perplexica - An AI-powered search engine 🔎 <!-- omit in toc -->
 
 ![preview](.assets/perplexica-screenshot.png)
