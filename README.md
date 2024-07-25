@@ -38,6 +38,7 @@ docker exec nchc_perplexica-backend cat /home/perplexica/config.toml
 ```
 
 - step5 Open website
+
 https://perplexica.biobank.org.tw/
 
 - step6 set config
@@ -45,10 +46,11 @@ https://perplexica.biobank.org.tw/
 1. add Groq api key
 2. ask 目前台灣總統是
 ```
-- step 7 Open website
+- step 7 Open website and seting something
+
 https://searxng_perplexica.biobank.org.tw/
 
-- step 8 cleanr docker cache
+- step 8 Clean docker cache
 ```
 docker builder prune -a
 ```
