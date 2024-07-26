@@ -1,7 +1,7 @@
 # CJZ
 - Step1: Git colne
 ```bash
-git clone https://github.com/ItzCrazyKns/Perplexica.git
+git clone https://github.com/c00cjz00/Perplexica.git
 ```
 
 - Step2: Copy config.toml
@@ -28,14 +28,14 @@ proxy_pass http://192.168.211.11:4000;
 ```
 
 - Step5: Edit code
-1. "/home/ubuntu/llmservice_ip/Perplexica/ui/components/ChatWindow.tsx"
+1. "Perplexica/ui/components/ChatWindow.tsx"
 ```
   const [focusMode, setFocusMode] = useState('webSearch');
 to 
   const [focusMode, setFocusMode] = useState('academicSearch');
 ```
 
-2. "/home/ubuntu/llmservice_ip/Perplexica/ui/components/MessageInputActions/Focus.tsx"
+2. "Perplexica/ui/components/MessageInputActions/Focus.tsx"
 ```
 const focusModes = [
   {
@@ -52,7 +52,7 @@ const focusModes = [
   }
 ];
 ```
-3. "/home/ubuntu/llmservice_ip/Perplexica/searxng/settings.yml"
+3. "Perplexica/searxng/settings.yml"
 ```
 search:
   # Filter results. 0: None, 1: Moderate, 2: Strict
@@ -67,7 +67,7 @@ search:
   # use codes from 'languages.py'
   default_lang: 'zh-TW'
 ```
-4. "/home/ubuntu/llmservice_ip/Perplexica/ui/components/Sidebar.tsx"
+4. "Perplexica/ui/components/Sidebar.tsx"
 ```
     /*{
       icon: Search,
@@ -76,7 +76,12 @@ search:
       label: 'Discover',
     },*/
 ```
-
+5.  "Perplexica/ui/components/EmptyChat.tsx"    
+```
+        <h2 className="text-black/70 dark:text-white/70 text-3xl font-medium -mt-8">
+          Research begins with NCHC.
+        </h2>
+```
 - Step6: Start server
 ```
 docker compose up -d --build
