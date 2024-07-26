@@ -1,17 +1,17 @@
 # CJZ
-- step1 Git colne
+- Step1: Git colne
 ```bash
 git clone https://github.com/ItzCrazyKns/Perplexica.git
 ```
 
-- step2 Copy config.toml
+- Step2: Copy config.toml
 ```
 cd Perplexica
 mkdir -p ./backend-dbstore
 cp sample.config.toml config.toml
 ```
 
-- step3 Edit nginx/default.conf
+- Step3: Edit nginx/default.conf
 ```
 server_name  perplexica.biobank.org.tw;
 proxy_pass http://192.168.211.11:3000;
@@ -21,13 +21,55 @@ server_name searxng_perplexica.biobank.org.tw;
 proxy_pass http://192.168.211.11:4000;
 ```
 
-- step4 Edit docker-compose.yaml
+- Step4: Edit docker-compose.yaml
 ```
 - NEXT_PUBLIC_API_URL=https://api_perplexica.biobank.org.tw/api
 - NEXT_PUBLIC_WS_URL=wss://api_perplexica.biobank.org.tw
 ```
 
-- step5 Start server
+- Step5: Edit code
+1. "/home/ubuntu/llmservice_ip/Perplexica/ui/components/ChatWindow.tsx"
+```
+  const [focusMode, setFocusMode] = useState('webSearch');
+to 
+  const [focusMode, setFocusMode] = useState('academicSearch');
+```
+
+2. "/home/ubuntu/llmservice_ip/Perplexica/ui/components/MessageInputActions/Focus.tsx"
+```
+const focusModes = [
+  {
+    key: 'academicSearch',
+    title: 'Academic',
+    description: 'Search in published academic papers',
+    icon: <SwatchBook size={20} />,
+  },
+  {
+    key: 'writingAssistant',
+    title: 'Writing',
+    description: 'Chat without searching the web',
+    icon: <Pencil size={16} />,
+  }
+];
+```
+3. "/home/ubuntu/llmservice_ip/Perplexica/searxng/settings.yml"
+```
+search:
+  # Filter results. 0: None, 1: Moderate, 2: Strict
+  safe_search: 0
+  # Existing autocomplete backends: "dbpedia", "duckduckgo", "google", "yandex", "mwmbl",
+  # "seznam", "startpage", "stract", "swisscows", "qwant", "wikipedia" - leave blank to turn it off
+  # by default.
+  autocomplete: 'google'
+  # minimun characters to type before autocompleter starts
+  autocomplete_min: 4
+  # Default search language - leave blank to detect from browser information or
+  # use codes from 'languages.py'
+  default_lang: 'zh-TW'
+```
+
+
+- Step6: Start server
 ```
 docker compose up -d --build
 ```
@@ -37,20 +79,21 @@ docker compose up -d --build
 docker exec nchc_perplexica-backend cat /home/perplexica/config.toml
 ```
 
-- step5 Open website
+- Step7: Open website
 
 https://perplexica.biobank.org.tw/
 
-- step6 set config
+- Step8: Set config
 ```
 1. add Groq api key
-2. ask 目前台灣總統是
+2. ask "taiwan avian influenza virus"
 ```
-- step 7 Open website and seting something
+
+- Step9: Open website and setting something
 
 https://searxng_perplexica.biobank.org.tw/
 
-- step 8 Clean docker cache
+- Step10: Clean docker cache
 ```
 docker builder prune -a
 ```
