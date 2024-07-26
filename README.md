@@ -9,8 +9,9 @@ git clone https://github.com/c00cjz00/Perplexica.git
 cd Perplexica
 mkdir -p ./backend-dbstore
 cp sample.config.toml config.toml
-```
 
+# Edit config.toml and add Groq api key
+```
 - Step3: Edit nginx/default.conf
 ```
 server_name  perplexica.biobank.org.tw;
@@ -96,10 +97,9 @@ docker exec nchc_perplexica-backend cat /home/perplexica/config.toml
 
 https://perplexica.biobank.org.tw/
 
-- Step8: Set config
+- Step8: Question
 ```
-1. add Groq api key
-2. ask "taiwan avian influenza virus"
+ask "taiwan avian influenza virus"
 ```
 
 - Step9: Open website and setting something
