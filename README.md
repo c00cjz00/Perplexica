@@ -67,7 +67,15 @@ search:
   # use codes from 'languages.py'
   default_lang: 'zh-TW'
 ```
-
+4. "/home/ubuntu/llmservice_ip/Perplexica/ui/components/Sidebar.tsx"
+```
+    /*{
+      icon: Search,
+      href: '/discover',
+      active: segments.includes('discover'),
+      label: 'Discover',
+    },*/
+```
 
 - Step6: Start server
 ```
