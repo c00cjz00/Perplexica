@@ -5,14 +5,23 @@ git clone https://github.com/c00cjz00/Perplexica.git
 ```
 
 - Step2: Copy config.toml
+Now edit config.toml and add Groq api key
 ```
 cd Perplexica
 mkdir -p ./backend-dbstore
 cp sample.config.toml config.toml
 
-# Edit config.toml and add Groq api key
 ```
+Now add auth for nginx (option)
+```
+sudo apt install apache2-utils -y
+htpasswd -c nginx_htpasswd user1
+htpasswd nginx_htpasswd user2
+cat nginx_htpasswd
+```
+
 - Step3: Edit nginx/default.conf
+Now add proxy
 ```
 server_name  perplexica.biobank.org.tw;
 proxy_pass http://192.168.211.11:3000;
@@ -20,6 +29,16 @@ server_name api_perplexica.biobank.org.tw;
 proxy_pass http://192.168.211.11:3001;
 server_name searxng_perplexica.biobank.org.tw;
 proxy_pass http://192.168.211.11:4000;
+```
+Now add auth (option)
+```
+server {
+    auth_basic           "Administrator’s Area";
+    auth_basic_user_file /nginx_htpasswd;
+
+    #listen       80;
+	listen 443 ssl;	
+    server_name  perplexica.biobank.org.tw;
 ```
 
 - Step4: Edit docker-compose.yaml

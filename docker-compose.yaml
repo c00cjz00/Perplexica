@@ -79,6 +79,7 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf 
       - ./website:/var/www/html  
       - ./nginx/biobank_ssl:/ssl          
+      - ./nginx_htpasswd:/nginx_htpasswd          
     restart: always
     networks:
         - nchc       
