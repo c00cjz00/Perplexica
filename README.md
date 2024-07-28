@@ -8,7 +8,7 @@ git clone https://github.com/c00cjz00/Perplexica.git
 Now edit config.toml and add Groq api key
 ```
 cd Perplexica
-mkdir -p ./backend-dbstore
+mkdir -p ./backend-dbstore ./valkey-data
 cp sample.config.toml config.toml
 
 ```
@@ -115,6 +115,18 @@ remove line forn 186
               query={history[messageIndex - 1].content}
             />
           </div>
+```
+7.  "Perplexica/engines/google.py"
+```
+    ret_val = {
+        'language': 'lang_zh-TW',
+        'country': 'TW',
+        'subdomain': None,
+        'params': {},
+        'headers': {},
+        'cookies': {},
+        'locale': 'zh-TW',
+    }
 ```
 - Step6: Start server
 ```
