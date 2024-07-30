@@ -91,6 +91,18 @@ services:
     depends_on:
       - nchc_perplexica-backend    
 
+  nchc_translation-agent-nchc:
+    container_name: nchc_translation-agent-nchc       
+    image: c00cjz00/translation-agent-nchc
+    volumes:
+      - ./translation-agent-nchc:/translation-agent-nchc
+    ports:
+      - 7860:7860
+    restart: unless-stopped
+    networks:
+      - nchc
+    command: bash -c "cd /translation-agent-nchc; poetry run python app/app.py"      
+
   nchc_php:
     container_name: nchc_php
     image: php:8.3-fpm
