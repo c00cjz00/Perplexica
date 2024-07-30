@@ -101,7 +101,7 @@ services:
     restart: unless-stopped
     networks:
       - nchc
-    command: bash -c "cd /translation-agent-nchc; poetry run python app/app.py"      
+    command: bash -c "cd /translation-agent-nchc; poetry run python app/app_nvidia.py"      
 
   nchc_php:
     container_name: nchc_php
